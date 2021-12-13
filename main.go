@@ -2,10 +2,14 @@ package main
 
 import (
 	"fmt"
-	"otter-calendar-ws/router"
+	"otter-calendar-ws/api/router"
+	"otter-calendar-ws/config"
 )
 
 func main() {
+	// init config
+	config.Load("./config.ini")
+
 	// set headers
 	router.SetHeader("Access-Control-Allow-Origin", "*")
 	router.SetHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, PATCH, HEAD, OPTIONS")
@@ -14,7 +18,7 @@ func main() {
 	// init api
 	router.Init()
 	// start http server
-	if err := router.ListenAndServe("6300"); err != nil {
+	if err := router.ListenAndServe(config.ServerName, config.ServerPort); err != nil {
 		panic(err)
 	}
 	// start https server

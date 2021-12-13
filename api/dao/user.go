@@ -1,23 +1,11 @@
 package dao
 
-import (
-	"otter-calendar-ws/entity"
-	"otter-calendar-ws/model"
-	"otter-calendar-ws/service"
-)
+import "otter-calendar-ws/api/model/user"
 
-var User = userDao{
-	Table: service.Model.GetTable(&model.User{}),
-	PK:    service.Model.GetPK(&model.User{}),
-	Col:   service.Model.GetColumn(&model.User{}).(model.User),
-}
+var User = userDao{}
 
-type userDao struct {
-	Table string
-	PK    string
-	Col   model.User
-}
+type userDao struct{}
 
-func (dao userDao) GetEventList() []entity.User {
-	return []entity.User{}
+func (dao userDao) GetEventList() []user.Entity {
+	return []user.Entity{}
 }

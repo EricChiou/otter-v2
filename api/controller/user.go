@@ -1,15 +1,16 @@
-package event
+package controller
 
 import (
 	"otter-calendar-ws/api/dao"
-	"otter-calendar-ws/service"
+	"otter-calendar-ws/api/http/response"
+	"otter-calendar-ws/api/middleware"
 )
 
 var User = userController{}
 
 type userController struct{}
 
-func (controller userController) GetUserList(webInput interceptor.WebInput) {
+func (controller userController) GetUserList(webInput middleware.WebInput) {
 	userList := dao.User.GetEventList()
-	service.Response.OK(webInput.userList)
+	response.Success(webInput.Context.Ctx, userList)
 }

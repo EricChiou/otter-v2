@@ -1,4 +1,4 @@
-package service
+package response
 
 import (
 	"encoding/json"
@@ -6,8 +6,6 @@ import (
 
 	"github.com/valyala/fasthttp"
 )
-
-var Response = response{}
 
 type Status string
 
@@ -36,22 +34,22 @@ type record struct {
 	List  []interface{} `json:"list"`
 }
 
-func (r response) OK(ctx *fasthttp.RequestCtx, result interface{}) {
+func Success(ctx *fasthttp.RequestCtx, result interface{}) {
 	resp := response{Status: OK, Result: result}
-	r.send(ctx, resp)
+	send(ctx, resp)
 }
 
-func (r response) Page(ctx *fasthttp.RequestCtx, page, limit, total uint, list []interface{}) {
+func Page(ctx *fasthttp.RequestCtx, page, limit, total uint, list []interface{}) {
 	resp := response{Status: OK, Result: record{Page: page, Limit: limit, Total: total, List: list}}
-	r.send(ctx, resp)
+	send(ctx, resp)
 }
 
-func (r response) Error(ctx *fasthttp.RequestCtx, errorMsg string, err error) {
-	resp := response{Status: OK, ErrorMsg: errorMsg, Trace: err.Error()}
-	r.send(ctx, resp)
+func Error(ctx *fasthttp.RequestCtx, status Status, errorMsg string, err error) {
+	resp := response{Status: status, ErrorMsg: errorMsg, Trace: err.Error()}
+	send(ctx, resp)
 }
 
-func (r response) send(ctx *fasthttp.RequestCtx, resp response) {
+func send(ctx *fasthttp.RequestCtx, resp response) {
 	bytes, _ := json.Marshal(resp)
 	fmt.Fprint(ctx, string(bytes))
 }
