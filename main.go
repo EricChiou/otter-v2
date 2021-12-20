@@ -4,11 +4,15 @@ import (
 	"fmt"
 	"otter-calendar-ws/api/router"
 	"otter-calendar-ws/config"
+	"otter-calendar-ws/jobqueue"
 )
 
 func main() {
 	// init config
 	config.Load("./config.ini")
+
+	// init jobqueue
+	jobqueue.Init()
 
 	// set headers
 	router.SetHeader("Access-Control-Allow-Origin", "*")
@@ -25,6 +29,9 @@ func main() {
 	// if err = router.ListenAndServeTLS("6300", cfg.SSLCertFilePath, cfg.SSLKeyFilePath); err != nil {
 	// 	panic(err)
 	// }
+
+	// waiting for jobqueue finished
+	jobqueue.Wait()
 
 	defer func() {
 		if err := recover(); err != nil {
