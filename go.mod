@@ -11,6 +11,7 @@ require golang.org/x/sys v0.0.0-20210615035016-665e8c7367d1 // indirect
 
 require (
 	github.com/EricChiou/config v0.0.0-20201022074701-2fe280207d37
+	github.com/EricChiou/jobqueue v0.0.0-20200814093036-00677a9e2b3b
 	github.com/andybalholm/brotli v1.0.4 // indirect
 	github.com/klauspost/compress v1.13.6 // indirect
 	github.com/valyala/bytebufferpool v1.0.0 // indirect
