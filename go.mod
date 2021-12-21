@@ -1,4 +1,4 @@
-module otter-calendar-ws
+module otter-v2
 
 go 1.17
 
