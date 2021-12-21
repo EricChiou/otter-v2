@@ -2,9 +2,9 @@ package main
 
 import (
 	"fmt"
-	"otter-calendar-ws/api/router"
-	"otter-calendar-ws/config"
-	"otter-calendar-ws/jobqueue"
+	"otter-v2/api/router"
+	"otter-v2/config"
+	"otter-v2/jobqueue"
 )
 
 func main() {

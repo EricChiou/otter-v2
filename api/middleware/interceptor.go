@@ -1,8 +1,8 @@
 package middleware
 
 import (
-	"otter-calendar-ws/api/http/jwt"
-	"otter-calendar-ws/api/http/response"
+	"otter-v2/api/http/jwt"
+	"otter-v2/api/http/response"
 
 	"github.com/EricChiou/httprouter"
 )

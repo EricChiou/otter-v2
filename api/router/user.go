@@ -1,6 +1,6 @@
 package router
 
-import "otter-calendar-ws/api/controller"
+import "otter-v2/api/controller"
 
 func initUserAPI() {
 	groupName := "/user"

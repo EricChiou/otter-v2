@@ -1,7 +1,7 @@
 package router
 
 import (
-	"otter-calendar-ws/api/middleware"
+	"otter-v2/api/middleware"
 
 	"github.com/EricChiou/httprouter"
 	"github.com/valyala/fasthttp"

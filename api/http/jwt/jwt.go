@@ -1,8 +1,8 @@
 package jwt
 
 import (
-	"otter-calendar-ws/config"
-	"otter-calendar-ws/pkg/jwt"
+	"otter-v2/config"
+	"otter-v2/pkg/jwt"
 	"time"
 )
 

@@ -1,8 +1,8 @@
 package dao
 
 import (
-	"otter-calendar-ws/api/model/user"
-	"otter-calendar-ws/jobqueue"
+	"otter-v2/api/model/user"
+	"otter-v2/jobqueue"
 )
 
 var User = userDao{}

@@ -2,8 +2,8 @@ package middleware
 
 import (
 	"errors"
-	"otter-calendar-ws/api/http/jwt"
-	"otter-calendar-ws/config"
+	"otter-v2/api/http/jwt"
+	"otter-v2/config"
 
 	"github.com/valyala/fasthttp"
 )

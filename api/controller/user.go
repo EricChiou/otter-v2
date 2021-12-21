@@ -1,9 +1,9 @@
 package controller
 
 import (
-	"otter-calendar-ws/api/dao"
-	"otter-calendar-ws/api/http/response"
-	"otter-calendar-ws/api/middleware"
+	"otter-v2/api/dao"
+	"otter-v2/api/http/response"
+	"otter-v2/api/middleware"
 )
 
 var User = userController{}
