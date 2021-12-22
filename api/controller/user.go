@@ -14,7 +14,7 @@ func (controller userController) GetUserList(webInput middleware.WebInput) {
 	userList, err := dao.User.GetEventList()
 
 	if err != nil {
-		response.Error(webInput.Context.Ctx, response.ServerError, err.Error(), err)
+		response.ServerError(webInput.Context.Ctx, err.Error(), err)
 		return
 	}
 	response.Success(webInput.Context.Ctx, userList)

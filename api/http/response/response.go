@@ -10,9 +10,9 @@ import (
 type Status string
 
 const (
-	OK           Status = "ok"
-	TokenExpired Status = "tokenExpired"
-	Error        Status = "error"
+	OK         Status = "ok"
+	TokenError Status = "tokenError"
+	Error      Status = "error"
 )
 
 type response struct {
@@ -45,9 +45,9 @@ func FormatError(ctx *fasthttp.RequestCtx, errorMsg string, err error) {
 	send(ctx, resp)
 }
 
-func TokenExpiredError(ctx *fasthttp.RequestCtx, errorMsg string, err error) {
+func TokenVerifyError(ctx *fasthttp.RequestCtx, errorMsg string, err error) {
 	ctx.Response.SetStatusCode(401)
-	resp := response{Status: TokenExpired, ErrorMsg: errorMsg, Trace: err.Error()}
+	resp := response{Status: TokenError, ErrorMsg: errorMsg, Trace: err.Error()}
 	send(ctx, resp)
 }
 

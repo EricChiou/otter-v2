@@ -25,7 +25,7 @@ func run(queue *jobqueue.Queue) {
 		if w, ok := w.(worker); ok {
 			*w.wait <- w.run()
 		} else {
-			*w.wait <- errors.New(string(response.ServerError))
+			*w.wait <- errors.New(string(response.Error))
 		}
 	})
 	queue.Run()

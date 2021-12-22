@@ -21,7 +21,7 @@ func Set(context *httprouter.Context, needToken bool, run func(WebInput)) {
 	payload, err := verifyToken(context.Ctx)
 	webInput.Payload = payload
 	if needToken && err != nil {
-		response.Error(context.Ctx, response.TokenError, "", err)
+		response.TokenVerifyError(context.Ctx, "", err)
 		return
 	}
 
