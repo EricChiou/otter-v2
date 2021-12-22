@@ -10,14 +10,9 @@ import (
 type Status string
 
 const (
-	OK               Status = "ok"
-	AccInactive      Status = "accInactive"
-	Duplicate        Status = "duplicate"
-	TokenError       Status = "tokenError"
-	PermissionDenied Status = "permissionDenied"
-	FormatError      Status = "formatError"
-	ServerError      Status = "serverError"
-	Unknown          Status = "unknown"
+	OK           Status = "ok"
+	TokenExpired Status = "tokenExpired"
+	Error        Status = "error"
 )
 
 type response struct {
@@ -28,9 +23,9 @@ type response struct {
 }
 
 type record struct {
-	Page  uint          `json:"page"`
-	Limit uint          `json:"limit"`
-	Total uint          `json:"total"`
+	Page  int           `json:"page"`
+	Limit int           `json:"limit"`
+	Total int           `json:"total"`
 	List  []interface{} `json:"list"`
 }
 
@@ -39,13 +34,38 @@ func Success(ctx *fasthttp.RequestCtx, result interface{}) {
 	send(ctx, resp)
 }
 
-func Page(ctx *fasthttp.RequestCtx, page, limit, total uint, list []interface{}) {
+func Page(ctx *fasthttp.RequestCtx, page, limit, total int, list []interface{}) {
 	resp := response{Status: OK, Result: record{Page: page, Limit: limit, Total: total, List: list}}
 	send(ctx, resp)
 }
 
-func Error(ctx *fasthttp.RequestCtx, status Status, errorMsg string, err error) {
-	resp := response{Status: status, ErrorMsg: errorMsg, Trace: err.Error()}
+func FormatError(ctx *fasthttp.RequestCtx, errorMsg string, err error) {
+	ctx.Response.SetStatusCode(400)
+	resp := response{Status: Error, ErrorMsg: errorMsg, Trace: err.Error()}
+	send(ctx, resp)
+}
+
+func TokenExpiredError(ctx *fasthttp.RequestCtx, errorMsg string, err error) {
+	ctx.Response.SetStatusCode(401)
+	resp := response{Status: TokenExpired, ErrorMsg: errorMsg, Trace: err.Error()}
+	send(ctx, resp)
+}
+
+func PermissionError(ctx *fasthttp.RequestCtx, errorMsg string, err error) {
+	ctx.Response.SetStatusCode(401)
+	resp := response{Status: Error, ErrorMsg: errorMsg, Trace: err.Error()}
+	send(ctx, resp)
+}
+
+func OperationError(ctx *fasthttp.RequestCtx, errorMsg string, err error) {
+	ctx.Response.SetStatusCode(403)
+	resp := response{Status: Error, ErrorMsg: errorMsg, Trace: err.Error()}
+	send(ctx, resp)
+}
+
+func ServerError(ctx *fasthttp.RequestCtx, errorMsg string, err error) {
+	ctx.Response.SetStatusCode(500)
+	resp := response{Status: Error, ErrorMsg: errorMsg, Trace: err.Error()}
 	send(ctx, resp)
 }
 
