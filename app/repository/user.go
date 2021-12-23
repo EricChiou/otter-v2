@@ -1,19 +1,20 @@
-package dao
+package repository
 
 import (
-	"otter-v2/api/model/user"
+	"otter-v2/app/model/user"
 	"otter-v2/jobqueue"
 )
 
-var User = userDao{}
+var User = userRepository{}
 
-type userDao struct{}
+type userRepository struct{}
 
-func (dao userDao) GetEventList() ([]user.Entity, error) {
+func (r userRepository) GetUserList() ([]user.Entity, error) {
 	var userList []user.Entity
 	err := jobqueue.User.NewUserListJob(func() interface{} {
 		userList = []user.Entity{}
 		return nil
 	})
+
 	return userList, err
 }

@@ -1,11 +1,12 @@
 package router
 
-import "otter-v2/api/controller"
+import (
+	"otter-v2/app/delivery"
+)
 
 func initUserAPI() {
 	groupName := "/user"
-	controller := controller.User
 
 	// user list
-	get(groupName+"/list", false, controller.GetUserList)
+	get(groupName+"/list", false, delivery.User.GetUserList)
 }

@@ -1,8 +1,8 @@
 package middleware
 
 import (
-	"otter-v2/api/http/jwt"
-	"otter-v2/api/http/response"
+	"otter-v2/api/jwt"
+	"otter-v2/api/response"
 
 	"github.com/EricChiou/httprouter"
 )

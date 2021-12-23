@@ -2,7 +2,7 @@ package middleware
 
 import (
 	"errors"
-	"otter-v2/api/http/jwt"
+	"otter-v2/api/jwt"
 	"otter-v2/config"
 
 	"github.com/valyala/fasthttp"
