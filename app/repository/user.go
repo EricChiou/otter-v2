@@ -2,7 +2,7 @@ package repository
 
 import (
 	"otter-v2/app/model/user"
-	"otter-v2/jobqueue"
+	"otter-v2/service/jobqueue"
 )
 
 var User = userRepository{}
