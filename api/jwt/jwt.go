@@ -17,20 +17,22 @@ type Payload struct {
 }
 
 func Generate(id int, acc, name, rolaeCode string) (string, error) {
+	cfg := config.Get()
+
 	payload := Payload{
 		ID:       id,
 		Acc:      acc,
 		Name:     name,
 		RoleCode: rolaeCode,
-		Exp:      time.Now().Unix() + int64(config.JWTExpire*86400),
+		Exp:      time.Now().Unix() + int64(cfg.JWTExpire*86400),
 	}
 
-	return jwt.Generate(payload, config.JWTKey, alg)
+	return jwt.Generate(payload, cfg.JWTKey, alg)
 }
 
 func Verify(j, k string) (Payload, error) {
 	var payload Payload
-	err := jwt.Verify(&payload, j, config.JWTKey, alg)
+	err := jwt.Verify(&payload, j, config.Get().JWTKey, alg)
 
 	return payload, err
 }

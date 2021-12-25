@@ -12,27 +12,15 @@ type Config struct {
 	ENV             string `key:"ENV"`
 }
 
-var ServerName string
-var ServerPort string
-var SSLCertFilePath string
-var SSLKeyFilePath string
-var JWTKey string
-var JWTExpire int
-var ENV string
+var cfg Config
 
-func Load(filePath string) error {
-	cfg := Config{}
+func Load(filePath string) {
 	err := config.Load(filePath, &cfg)
 	if err != nil {
-		return err
+		panic(err)
 	}
+}
 
-	ServerName = cfg.ServerName
-	ServerPort = cfg.ServerPort
-	SSLCertFilePath = cfg.SSLCertFilePath
-	SSLKeyFilePath = cfg.SSLKeyFilePath
-	JWTKey = cfg.JWTKey
-	JWTExpire = cfg.JWTExpire
-	ENV = cfg.ENV
-	return nil
+func Get() Config {
+	return cfg
 }

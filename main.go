@@ -10,6 +10,7 @@ import (
 func main() {
 	// init config
 	config.Load("./config.ini")
+	var cfg = config.Get()
 
 	// init jobqueue
 	jobqueue.Init()
@@ -22,7 +23,7 @@ func main() {
 	// init api
 	router.Init()
 	// start http server
-	if err := router.ListenAndServe(config.ServerName, config.ServerPort); err != nil {
+	if err := router.ListenAndServe(cfg.ServerName, cfg.ServerPort); err != nil {
 		panic(err)
 	}
 	// start https server
