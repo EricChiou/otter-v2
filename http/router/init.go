@@ -1,7 +1,7 @@
 package router
 
 import (
-	"otter-v2/api/middleware"
+	"otter-v2/http/middleware"
 
 	"github.com/EricChiou/httprouter"
 	"github.com/valyala/fasthttp"

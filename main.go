@@ -2,8 +2,8 @@ package main
 
 import (
 	"fmt"
-	"otter-v2/api/router"
 	"otter-v2/config"
+	"otter-v2/http/router"
 	"otter-v2/service/jobqueue"
 )
 

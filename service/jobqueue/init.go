@@ -2,7 +2,7 @@ package jobqueue
 
 import (
 	"errors"
-	"otter-v2/api/response"
+	"otter-v2/http/response"
 
 	"github.com/EricChiou/jobqueue"
 )

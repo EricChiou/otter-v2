@@ -1,9 +1,9 @@
 package delivery
 
 import (
-	"otter-v2/api/middleware"
-	"otter-v2/api/response"
 	"otter-v2/app/usecase"
+	"otter-v2/http/middleware"
+	"otter-v2/http/response"
 )
 
 var User = userDelivery{}
