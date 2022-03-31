@@ -5,7 +5,7 @@ import (
 	"otter-v2/app/repository"
 )
 
-var User userUsecase
+var User = userUsecase{}
 
 type userUsecase struct{}
 
